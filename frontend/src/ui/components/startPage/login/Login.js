@@ -1,5 +1,6 @@
 import React from 'react';
 import {Grid, Row, Col, Form} from 'react-bootstrap';
+import LoginHeader from './LoginHeader';
 import FormFields from './FormFields';
 import FormButtons from './FormButtons';
 import styles from './login.css';
@@ -9,6 +10,7 @@ const Login = props => (
     <Form>
       <Row>
         <Col md={4} mdOffset={4}>
+          <LoginHeader/>
           <FormFields
             accountId={props.accountId}
             password={props.password}

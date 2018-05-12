@@ -1,5 +1,6 @@
 import React from 'react';
 import {Grid, Row, Col, Form} from 'react-bootstrap';
+import RegisterHeader from './RegisterHeader';
 import FormFields from './FormFields';
 import FormButtons from './FormButtons';
 import styles from './register.css';
@@ -9,6 +10,7 @@ const Register = props => (
     <Form>
       <Row>
         <Col md={4} mdOffset={4}>
+          <RegisterHeader/>
           <FormFields
             accountId={props.accountId}
             handleChangeAccountId={event => props.handleChangeAccountId(event)}

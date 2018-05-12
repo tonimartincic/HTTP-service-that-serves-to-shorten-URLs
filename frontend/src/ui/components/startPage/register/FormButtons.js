@@ -13,7 +13,7 @@ const FormButtons = props => (
           onClick={props.handleSubmit}
         >
           <span>
-            <span className='glyphicon glyphicon-log-in'/> Login
+            <span className='glyphicon glyphicon-log-in'/> Register
           </span>
         </Button>
       </Col>
