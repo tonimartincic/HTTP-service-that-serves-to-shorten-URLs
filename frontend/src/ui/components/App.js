@@ -4,7 +4,6 @@ import {Route, Router} from 'react-router-dom';
 import {history} from './history/history';
 import LoginPage from './loginPage/LoginPage';
 import URLRegister from './urlRegister/URLRegister';
-import PrivateRoute from './route/PrivateRoute';
 import styles from './app.css';
 
 class App extends React.Component {
