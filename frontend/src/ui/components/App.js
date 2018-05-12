@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, Router} from 'react-router-dom';
 import {history} from './history/history';
-import StartPage from './startPage/StartPage';
+import LoginPage from './loginPage/LoginPage';
+import URLRegister from './urlRegister/URLRegister';
+import PrivateRoute from './route/PrivateRoute';
 import styles from './app.css';
 
 class App extends React.Component {
@@ -10,7 +12,9 @@ class App extends React.Component {
     return (
       <Router history={history}>
         <section className={styles.section}>
-          <Route exact path='/login' component={StartPage}/>
+          <Route exact path='/login' component={LoginPage}/>
+          <Route exact path='/url-register' component={URLRegister}/>
+          <Route exact path='/' component={LoginPage}/>
         </section>
       </Router>
     );

@@ -13,7 +13,6 @@ import org.springframework.web.servlet.resource.ResourceResolverChain;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Configuration
@@ -38,7 +37,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
   private class PushStateResourceResolver implements ResourceResolver {
     private final Resource index = new ClassPathResource("/static/index.html");
     private final List<String> handledExtensions = Arrays.asList("html", "js", "json", "csv", "css", "png", "svg", "eot", "ttf", "woff", "appcache", "jpg", "jpeg", "gif", "ico");
-    private final List<String> ignoredPaths = Collections.singletonList("api");
 
     @Override
     public Resource resolveResource(final HttpServletRequest request, final String requestPath, final List<? extends Resource> locations, final ResourceResolverChain chain) {
@@ -61,10 +59,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     }
 
     private Resource resolve(final String requestPath, final List<? extends Resource> locations) {
-      if (isIgnored(requestPath)) {
-        return null;
-      }
-
       if (isHandled(requestPath)) {
         return locations.stream()
           .map(loc -> createRelative(loc, requestPath))
@@ -82,10 +76,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
       } catch (final IOException e) {
         return null;
       }
-    }
-
-    private boolean isIgnored(final String path) {
-      return this.ignoredPaths.contains(path);
     }
 
     private boolean isHandled(final String path) {

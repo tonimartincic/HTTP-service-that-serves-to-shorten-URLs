@@ -3,7 +3,19 @@ import * as types from '../actionTypes';
 
 export default async function openAccount(accountId) {
   try {
-    const response = await axios.get('/api/account', accountId);
+    debugger;
+    const response = await axios.post(
+      '/account',
+      {
+        accountId
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+      );
+    debugger;
 
     return {
       type: types.OPEN_ACCOUNT_SUCCESS,
@@ -19,7 +31,7 @@ export default async function openAccount(accountId) {
 
 export async function validateAccount(account) {
   try {
-    const response = await axios.post('/api/account/validate', account);
+    const response = await axios.post('/account/validate', account);
 
     return {
       type: types.VALIDATE_ACCOUNT_SUCCESS,

@@ -18,7 +18,7 @@ public class URLController {
       this.urlService = urlService;
   }
 
-  @PostMapping("api/register")
+  @PostMapping("register")
   public URLResponse register(@RequestBody final URLRequest urlRequest) {
       return this.urlService.register(urlRequest);
   }

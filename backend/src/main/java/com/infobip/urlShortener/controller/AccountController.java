@@ -19,12 +19,12 @@ public class AccountController {
       this.accountService = accountService;
   }
 
-  @PostMapping("api/account")
+  @PostMapping("/account")
   public OpeningAccountResponse openAccount(@RequestBody final OpeningAccountRequest openingAccountRequest) {
       return this.accountService.openAccount(openingAccountRequest);
   }
 
-  @PostMapping("api/account/validate")
+  @PostMapping("/account/validate")
   public Account validate(@RequestBody final Account account) {
     return this.accountService.validate(account);
   }

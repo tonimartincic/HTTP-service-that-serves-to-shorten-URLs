@@ -27,6 +27,10 @@ public class Account {
 
   public Account(String id, String password) {
       this.id = id;
-      this.password = password;
+      this.setPassword(password);
+  }
+
+  public void setPassword(String password) {
+    this.password = PASSWORD_ENCODER.encode(password);
   }
 }

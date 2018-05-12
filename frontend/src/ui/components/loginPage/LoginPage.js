@@ -2,13 +2,13 @@ import React from 'react';
 
 import LoginContainer from './login/LoginContainer';
 import RegisterContainer from './register/RegisterContainer';
-import styles from './startPage.css';
+import styles from './loginPage.css';
 
-const StartPage = () => (
+const LoginPage = () => (
   <section className={styles.section}>
     <LoginContainer/>
     <RegisterContainer/>
   </section>
 );
 
-export default StartPage;
+export default LoginPage;
