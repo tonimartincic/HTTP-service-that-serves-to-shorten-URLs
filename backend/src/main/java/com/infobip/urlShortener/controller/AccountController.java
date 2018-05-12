@@ -1,6 +1,7 @@
 package com.infobip.urlShortener.controller;
 
 import com.infobip.urlShortener.domain.account.Account;
+import com.infobip.urlShortener.domain.account.AccountRequest;
 import com.infobip.urlShortener.domain.account.openingAccount.OpeningAccountRequest;
 import com.infobip.urlShortener.domain.account.openingAccount.OpeningAccountResponse;
 import com.infobip.urlShortener.service.AccountService;
@@ -25,7 +26,7 @@ public class AccountController {
   }
 
   @PostMapping("/account/validate")
-  public Account validate(@RequestBody final Account account) {
-    return this.accountService.validate(account);
+  public Account validate(@RequestBody final AccountRequest accountRequest) {
+    return this.accountService.validate(accountRequest);
   }
 }

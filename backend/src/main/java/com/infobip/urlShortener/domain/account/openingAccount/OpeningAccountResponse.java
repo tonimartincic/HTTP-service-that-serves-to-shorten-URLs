@@ -1,6 +1,5 @@
 package com.infobip.urlShortener.domain.account.openingAccount;
 
-import com.infobip.urlShortener.enumeration.OpeningAccountDescription;
 import lombok.Data;
 
 @Data
@@ -8,13 +7,13 @@ public class OpeningAccountResponse {
 
     private Boolean success;
 
-    private OpeningAccountDescription openingAccountDescription;
+    private String description;
 
     private String password;
 
-    public OpeningAccountResponse(Boolean success, OpeningAccountDescription openingAccountDescription, String password) {
+    public OpeningAccountResponse(Boolean success, String description, String password) {
         this.success = success;
-        this.openingAccountDescription = openingAccountDescription;
+        this.description = description;
         this.password = password;
     }
 }

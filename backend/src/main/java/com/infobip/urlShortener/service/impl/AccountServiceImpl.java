@@ -1,6 +1,7 @@
 package com.infobip.urlShortener.service.impl;
 
 import com.infobip.urlShortener.domain.account.Account;
+import com.infobip.urlShortener.domain.account.AccountRequest;
 import com.infobip.urlShortener.domain.account.openingAccount.OpeningAccountRequest;
 import com.infobip.urlShortener.domain.account.openingAccount.OpeningAccountResponse;
 import com.infobip.urlShortener.enumeration.OpeningAccountDescription;
@@ -25,13 +26,14 @@ public class AccountServiceImpl implements AccountService {
   @Override
   public OpeningAccountResponse openAccount(OpeningAccountRequest openingAccountRequest) {
       if(accountAlreadyExists(openingAccountRequest.getAccountId())) {
-          return new OpeningAccountResponse(Boolean.FALSE, OpeningAccountDescription.ALREADY_EXISTS, null);
+          return new OpeningAccountResponse(Boolean.FALSE, OpeningAccountDescription.ALREADY_EXISTS.getDescription(), null);
       }
 
-      Account account = new Account(openingAccountRequest.getAccountId(), PasswordGenerator.generatePassword());
+      String password = PasswordGenerator.generatePassword();
+      Account account = new Account(openingAccountRequest.getAccountId(), password);
       this.accountRepository.save(account);
 
-      return new OpeningAccountResponse(Boolean.TRUE, OpeningAccountDescription.SUCCESS, account.getPassword());
+      return new OpeningAccountResponse(Boolean.TRUE, OpeningAccountDescription.SUCCESS.getDescription(), password);
   }
 
   private boolean accountAlreadyExists(String AccountId) {
@@ -39,7 +41,16 @@ public class AccountServiceImpl implements AccountService {
   }
 
   @Override
-  public Account validate(Account account) {
-    return this.accountRepository.findByIdAndPassword(account.getId(), account.getPassword());
+  public Account validate(AccountRequest accountRequest) {
+    Optional<Account> accountFromDatabase =  this.accountRepository.findById(accountRequest.getId());
+    if(!accountFromDatabase.isPresent()) {
+      return null;
+    }
+
+    if(!Account.PASSWORD_ENCODER.matches(accountRequest.getPassword(), accountFromDatabase.get().getPassword())) {
+      return null;
+    }
+
+    return accountFromDatabase.get();
   }
 }

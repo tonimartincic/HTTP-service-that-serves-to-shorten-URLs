@@ -3,19 +3,18 @@ import * as types from '../actionTypes';
 
 export default async function openAccount(accountId) {
   try {
-    debugger;
     const response = await axios.post(
       '/account',
       {
         accountId
       },
       {
-        headers: {
+        headers:
+          {
           'Content-Type': 'application/json',
-        }
+          }
       }
       );
-    debugger;
 
     return {
       type: types.OPEN_ACCOUNT_SUCCESS,
