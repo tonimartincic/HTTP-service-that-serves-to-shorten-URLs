@@ -6,10 +6,10 @@
 }
 
 .section::before {
-  top: 3em;
-  left: 35em;
-  height: 80%;
-  width: 40em;
+  top: 5%;
+  left: 35%;
+  height: 85%;
+  width: 30%;
   content: "";
   position: absolute;
   bottom: 0;
