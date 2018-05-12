@@ -1,4 +1,4 @@
-package com.infobip.urlShortener.domain.account;
+package com.infobip.urlShortener.domain.account.openingAccount;
 
 import com.infobip.urlShortener.enumeration.OpeningAccountDescription;
 import lombok.Data;

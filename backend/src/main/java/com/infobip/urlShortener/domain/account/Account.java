@@ -7,24 +7,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @ToString(exclude = "password")
 @Data
 public class Account {
 
-    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+  public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
-    private String id;
+  @Id
+  private String id;
 
-    @JsonIgnore
-    private String password;
+  @JsonIgnore
+  private String password;
 
-    public Account() {
-    }
+  public Account() {
+  }
 
-    public Account(String id, String password) {
-        this.id = id;
-        this.password = password;
-    }
+  public Account(String id, String password) {
+      this.id = id;
+      this.password = password;
+  }
 }

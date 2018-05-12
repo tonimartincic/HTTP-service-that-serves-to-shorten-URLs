@@ -21,4 +21,13 @@ public enum RedirectType {
     public Integer getValue() {
         return value;
     }
+
+  public static RedirectType getByValue(final Integer value) {
+    switch (value) {
+      case 301:
+        return RedirectType.MOVED_PERMANENTLY;
+      default:
+        return RedirectType.FOUND;
+    }
+  }
 }
