@@ -11,8 +11,6 @@ import com.infobip.urlShortener.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -37,20 +35,24 @@ public class AccountServiceImpl implements AccountService {
   }
 
   private boolean accountAlreadyExists(String AccountId) {
-        return this.accountRepository.findById(AccountId).isPresent();
+        return this.accountRepository.findByUsername(AccountId) != null;
   }
 
   @Override
   public Account validate(AccountRequest accountRequest) {
-    Optional<Account> accountFromDatabase =  this.accountRepository.findById(accountRequest.getId());
-    if(!accountFromDatabase.isPresent()) {
+    Account accountFromDatabase =  this.accountRepository.findByUsername(accountRequest.getUsername());
+    if(accountFromDatabase == null) {
       return null;
     }
 
-    if(!Account.PASSWORD_ENCODER.matches(accountRequest.getPassword(), accountFromDatabase.get().getPassword())) {
+    if(!passwordIsCorrect(accountRequest, accountFromDatabase)) {
       return null;
     }
 
-    return accountFromDatabase.get();
+    return accountFromDatabase;
+  }
+
+  private boolean passwordIsCorrect(AccountRequest accountRequest, Account accountFromDatabase) {
+    return Account.PASSWORD_ENCODER.matches(accountRequest.getPassword(), accountFromDatabase.getPassword());
   }
 }

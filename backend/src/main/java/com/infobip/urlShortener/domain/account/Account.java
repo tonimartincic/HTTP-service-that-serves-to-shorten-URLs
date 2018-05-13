@@ -6,6 +6,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -16,15 +18,18 @@ public class Account {
   public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
   @Id
-  private String id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private String username;
 
   private String password;
 
   public Account() {
   }
 
-  public Account(String id, String password) {
-      this.id = id;
+  public Account(String username, String password) {
+      this.username = username;
       this.setPassword(password);
   }
 

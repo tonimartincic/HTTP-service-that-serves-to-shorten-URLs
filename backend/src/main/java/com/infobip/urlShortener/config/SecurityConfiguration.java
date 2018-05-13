@@ -1,7 +1,5 @@
 package com.infobip.urlShortener.config;
 
-import com.infobip.urlShortener.domain.account.Account;
-import com.infobip.urlShortener.service.impl.SpringDataJpaUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,31 +9,30 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-  private SpringDataJpaUserDetailsService userDetailsService;
+  private CustomAuthenticationProvider authenticationProvider;
 
   @Autowired
-  public SecurityConfiguration(SpringDataJpaUserDetailsService userDetailsService) {
-    this.userDetailsService = userDetailsService;
+  public SecurityConfiguration(CustomAuthenticationProvider authenticationProvider) {
+    this.authenticationProvider = authenticationProvider;
   }
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth
-      .userDetailsService(this.userDetailsService)
-      .passwordEncoder(Account.PASSWORD_ENCODER);
+    auth.authenticationProvider(this.authenticationProvider);
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
       .authorizeRequests()
-      .antMatchers("/favicon.ico", "/", "/account/**").permitAll()
+      .antMatchers("/favicon.ico", "/", "/account/validate", "/account").permitAll()
       .anyRequest().authenticated()
       .and()
       .formLogin()
+      .usernameParameter("username")
+      .passwordParameter("password")
       .loginPage("/")
-      .loginProcessingUrl("/")
-      .permitAll()
+      .loginProcessingUrl("/account/validate")
       .and()
       .httpBasic()
       .and()

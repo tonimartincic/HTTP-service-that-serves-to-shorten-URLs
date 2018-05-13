@@ -23,7 +23,7 @@ class LoginContainer extends Component {
     event.preventDefault();
 
     const account = {
-      id: this.state.accountId,
+      username: this.state.accountId,
       password: this.state.password,
     };
 

@@ -1,6 +1,7 @@
 package com.infobip.urlShortener.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.util.StringUtils;
@@ -16,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@Import(SecurityConfiguration.class)
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
   @Override
@@ -35,7 +37,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
   }
 
   private class PushStateResourceResolver implements ResourceResolver {
-    private final Resource index = new ClassPathResource("/static/index.html");
+    private final Resource index = new ClassPathResource("/");
     private final List<String> handledExtensions = Arrays.asList("html", "js", "json", "csv", "css", "png", "svg", "eot", "ttf", "woff", "appcache", "jpg", "jpeg", "gif", "ico");
 
     @Override

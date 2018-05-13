@@ -3,22 +3,19 @@ package com.infobip.urlShortener.domain.account;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.persistence.Id;
-
 @ToString(exclude = "password")
 @Data
 public class AccountRequest {
 
-  @Id
-  private String id;
+  private String username;
 
   private String password;
 
   public AccountRequest() {
   }
 
-  public AccountRequest(String id, String password) {
-    this.id = id;
+  public AccountRequest(String username, String password) {
+    this.username = username;
     this.password = password;
   }
 }
