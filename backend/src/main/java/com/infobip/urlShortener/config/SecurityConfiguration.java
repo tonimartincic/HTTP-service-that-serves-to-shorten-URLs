@@ -25,19 +25,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
       .authorizeRequests()
-      .antMatchers("/favicon.ico", "/", "/api/account/validate", "/api/account").permitAll()
+      .antMatchers("/favicon.ico", "/api", "/api/account/validate", "/api/account").permitAll()
       .anyRequest().authenticated()
       .and()
       .formLogin()
       .usernameParameter("username")
       .passwordParameter("password")
-      .loginPage("/")
+      .loginPage("/api")
       .loginProcessingUrl("/api/account/validate")
       .and()
       .httpBasic()
       .and()
       .csrf().disable()
       .logout()
-      .logoutSuccessUrl("/");
+      .logoutSuccessUrl("/api");
   }
 }
