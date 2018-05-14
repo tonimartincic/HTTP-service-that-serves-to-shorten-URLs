@@ -18,7 +18,7 @@ public class StatisticController {
     this.statisticService = statisticService;
   }
 
-  @GetMapping("/statistic/{AccountId}")
+  @GetMapping("/api/statistic/{AccountId}")
   public Map<String, Long> getLoggedUser(@PathVariable String AccountId) {
     return this.statisticService.getStatistics(AccountId);
   }

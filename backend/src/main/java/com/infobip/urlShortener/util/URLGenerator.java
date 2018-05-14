@@ -4,7 +4,7 @@ import org.apache.commons.lang.RandomStringUtils;
 
 public class URLGenerator {
 
-  private static final String URL_FIRST_PART = "http://localhost:3000/";
+  public static final String URL_FIRST_PART = "http://localhost:3000/";
 
   private static final Integer LENGTH = 8;
 

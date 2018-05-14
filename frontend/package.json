@@ -3,8 +3,8 @@
   "version": "0.0.1-SNAPSHOT",
   "description": "URL shortener frontend",
   "scripts": {
-    "start": "webpack-dev-server --inline --port 3000 --config webpack.dev.config.js",
-    "build": "cross-env NODE_ENV=production webpack -p"
+    "start": "webpack-dev-server --inline --port 3000 --config webpack.config.js",
+    "build": "webpack -p"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

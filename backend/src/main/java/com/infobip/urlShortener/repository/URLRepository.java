@@ -11,4 +11,6 @@ import java.util.List;
 public interface URLRepository extends CrudRepository<URL, Long> {
 
   List<URL> findAllByAccount(Account account);
+
+  URL findByShortUrl(String shortUrl);
 }
