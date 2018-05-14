@@ -1,5 +1,6 @@
 package com.infobip.urlShortener.service.impl;
 
+import com.infobip.urlShortener.domain.url.URL;
 import com.infobip.urlShortener.domain.url.URLRequest;
 import com.infobip.urlShortener.domain.url.URLResponse;
 import com.infobip.urlShortener.repository.URLRepository;
@@ -19,6 +20,10 @@ public class URLServiceImpl implements URLService {
 
   @Override
   public URLResponse register(URLRequest urlRequest) {
-    return null;
+    return getURLResponse(this.urlRepository.save(new URL(urlRequest)));
+  }
+
+  private URLResponse getURLResponse(URL url) {
+    return new URLResponse(url);
   }
 }
