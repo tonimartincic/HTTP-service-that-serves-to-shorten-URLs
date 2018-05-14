@@ -37,7 +37,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
   }
 
   private class PushStateResourceResolver implements ResourceResolver {
-    private final Resource index = new ClassPathResource("/");
+    private final Resource index = new ClassPathResource("/index.html");
     private final List<String> handledExtensions = Arrays.asList("html", "js", "json", "csv", "css", "png", "svg", "eot", "ttf", "woff", "appcache", "jpg", "jpeg", "gif", "ico");
 
     @Override
