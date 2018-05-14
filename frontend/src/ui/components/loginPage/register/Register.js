@@ -3,6 +3,7 @@ import {Form, Well} from 'react-bootstrap';
 import RegisterHeader from './header/RegisterHeader';
 import FormFields from './form/FormFields';
 import FormButtons from './form/FormButtons';
+import AccountIdValidation from './validation/AccountIdValidation';
 import OpeningAccountResponse from './openingAccountResponse/OpeningAccountResponse';
 import styles from './register.css';
 
@@ -19,6 +20,11 @@ const Register = props => (
           handleSubmit={event => props.handleSubmit(event)}
           handleReset={event => props.handleReset(event)}
         />
+        <Choose>
+          <When condition={props.accountIdValidation === 'error'}>
+            <AccountIdValidation/>
+          </When>
+        </Choose>
         <Choose>
           <When condition={props.openingAccountResponse != null}>
             <OpeningAccountResponse

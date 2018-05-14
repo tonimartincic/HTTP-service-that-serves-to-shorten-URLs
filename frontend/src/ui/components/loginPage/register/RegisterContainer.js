@@ -11,6 +11,7 @@ class RegisterContainer extends Component {
 
     this.state = {
       accountId: '',
+      accountIdValidation: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,18 +21,29 @@ class RegisterContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    if (this.state.accountId == null || this.state.accountId.trim() === '') {
+      this.setState({
+        accountIdValidation: 'error',
+      });
+
+      return;
+    }
+
     this.props.openAccount(this.state.accountId);
   };
 
   handleChangeAccountId = (event) => {
     this.setState({
       accountId: event.target.value,
+      accountIdValidation: null,
     });
   };
 
   handleReset = () => {
     this.setState({
       accountId: '',
+      accountIdValidation: null,
     });
 
     this.props.setOpeningAccountResponse(null);
@@ -45,6 +57,7 @@ class RegisterContainer extends Component {
         handleSubmit={event => this.handleSubmit(event)}
         handleReset={event => this.handleReset(event)}
         openingAccountResponse={this.props.openingAccountResponse}
+        accountIdValidation={this.state.accountIdValidation}
       />
     );
   }
