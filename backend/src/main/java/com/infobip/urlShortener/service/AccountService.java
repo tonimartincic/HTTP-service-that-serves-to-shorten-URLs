@@ -10,4 +10,6 @@ public interface AccountService {
   OpeningAccountResponse openAccount(OpeningAccountRequest openingAccountRequest);
 
   Account validate(AccountRequest accountRequest);
+
+  Account getAccountByUsername(String username);
 }

@@ -30,8 +30,8 @@ class NavigationBar extends Component {
         <Nav className={styles.navCenter}>
           <NavItem
             componentClass={Link}
-            to='/url-register'
-            href='/url-register'
+            to='/'
+            href='/'
           >
               <span className={styles.span}>
                 <span className='glyphicon glyphicon-upload'/> URL register
@@ -55,12 +55,12 @@ class NavigationBar extends Component {
                 <span className='glyphicon glyphicon-question-sign'/> Help
               </span>
           </NavItem>
-          {/*<NavItem>*/}
-              {/*<span className={styles.spanNoHover}>*/}
-                 {/*<span*/}
-                   {/*className='glyphicon glyphicon-user'/> {this.props.userData.firstName + ' ' + this.props.userData.lastName}*/}
-              {/*</span>*/}
-          {/*</NavItem>*/}
+          <NavItem>
+              <span className={styles.spanNoHover}>
+                 <span
+                   className='glyphicon glyphicon-user'/> {this.props.account == null ? '' : this.props.account.username}
+              </span>
+          </NavItem>
         </Nav>
       </Navbar>
     );
@@ -69,7 +69,7 @@ class NavigationBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    // userData: state.userData,
+    account: state.account,
   };
 }
 

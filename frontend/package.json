@@ -3,8 +3,8 @@
   "version": "0.0.1-SNAPSHOT",
   "description": "URL shortener frontend",
   "scripts": {
-    "start": "webpack-dev-server --inline --port 3000 --config webpack.config.js",
-    "build": "webpack -p"
+    "start": "webpack-dev-server --inline --port 3000 --config webpack.dev.config.js",
+    "build": "cross-env NODE_ENV=production webpack -p"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -22,7 +22,10 @@
     "transform-runtime": "^0.0.0",
     "jsx-control-statements": "^3.2.5",
     "style-loader": "^0.18.2",
-    "css-loader": "^0.28.4"
+    "css-loader": "^0.28.4",
+    "postcss-loader": "^2.0.6",
+    "cross-env": "^5.0.1",
+    "extract-text-webpack-plugin": "^2.1.2"
   },
   "dependencies": {
     "axios": "^0.16.2",

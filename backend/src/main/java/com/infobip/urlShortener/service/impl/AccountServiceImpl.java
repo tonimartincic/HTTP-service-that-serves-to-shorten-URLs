@@ -54,8 +54,12 @@ public class AccountServiceImpl implements AccountService {
     return accountFromDatabase;
   }
 
+  @Override
+  public Account getAccountByUsername(String username) {
+    return this.accountRepository.findByUsername(username);
+  }
+
   private boolean passwordIsCorrect(AccountRequest accountRequest, Account accountFromDatabase) {
-    //return Account.PASSWORD_ENCODER.matches(accountRequest.getPassword(), accountFromDatabase.getPassword());
-    return true;
+    return Account.PASSWORD_ENCODER.matches(accountRequest.getPassword(), accountFromDatabase.getPassword());
   }
 }

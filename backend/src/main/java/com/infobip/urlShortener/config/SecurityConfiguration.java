@@ -31,13 +31,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       .formLogin()
       .usernameParameter("username")
       .passwordParameter("password")
-      .loginPage("/")
+      .loginPage("/login")
       .loginProcessingUrl("/api/account/validate")
       .and()
       .httpBasic()
       .and()
       .csrf().disable()
       .logout()
-      .logoutSuccessUrl("/");
+      .logoutSuccessUrl("/login");
   }
 }

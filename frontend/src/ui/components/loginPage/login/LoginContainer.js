@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import validateAccount from '../../../../redux/actionCreators/accountActionCreators';
+import {login} from '../../../../redux/actionCreators/accountActionCreators';
 import Login from './Login';
 
 class LoginContainer extends Component {
@@ -27,7 +28,8 @@ class LoginContainer extends Component {
       password: this.state.password,
     };
 
-    this.props.validateAccount(account);
+    this.props.validateAccount(account)
+      .then(() => this.props.login());
   };
 
   handleChangeAccountId = (event) => {
@@ -71,6 +73,7 @@ function mapStateToProps() {
 function mapDispatchToProps(dispatch) {
   return {
     validateAccount: account => dispatch(validateAccount(account)),
+    login: () => dispatch(login()),
   };
 }
 
