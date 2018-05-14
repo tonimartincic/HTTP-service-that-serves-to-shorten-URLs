@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import openAccount from '../../../../redux/actionCreators/accountActionCreators';
+import openAccount from '../../../../redux/actionCreators/openingAccountActionCreators';
 import Register from './Register';
 
 class RegisterContainer extends Component {
@@ -41,13 +41,15 @@ class RegisterContainer extends Component {
         handleChangeAccountId={event => this.handleChangeAccountId(event)}
         handleSubmit={event => this.handleSubmit(event)}
         handleReset={event => this.handleReset(event)}
+        openingAccountResponse={this.props.openingAccountResponse}
       />
     );
   }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
+    openingAccountResponse: state.openingAccountResponse,
   };
 }
 

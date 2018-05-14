@@ -1,28 +1,35 @@
 import React from 'react';
-import {Grid, Row, Col, Form} from 'react-bootstrap';
-import RegisterHeader from './RegisterHeader';
-import FormFields from './FormFields';
-import FormButtons from './FormButtons';
+import {Form, Well} from 'react-bootstrap';
+import RegisterHeader from './header/RegisterHeader';
+import FormFields from './form/FormFields';
+import FormButtons from './form/FormButtons';
+import OpeningAccountResponse from './openingAccountResponse/OpeningAccountResponse';
 import styles from './register.css';
 
 const Register = props => (
-  <Grid className={styles.container}>
-    <Form>
-      <Row>
-        <Col md={4} mdOffset={4}>
-          <RegisterHeader/>
-          <FormFields
-            accountId={props.accountId}
-            handleChangeAccountId={event => props.handleChangeAccountId(event)}
-          />
-          <FormButtons
-            handleSubmit={event => props.handleSubmit(event)}
-            handleReset={event => props.handleReset(event)}
-          />
-        </Col>
-      </Row>
-    </Form>
-  </Grid>
+  <section className={styles.section}>
+    <Well className={styles.well}>
+      <Form>
+        <RegisterHeader/>
+        <FormFields
+          accountId={props.accountId}
+          handleChangeAccountId={event => props.handleChangeAccountId(event)}
+        />
+        <FormButtons
+          handleSubmit={event => props.handleSubmit(event)}
+          handleReset={event => props.handleReset(event)}
+        />
+        <Choose>
+          <When condition={props.openingAccountResponse != null}>
+            <OpeningAccountResponse
+              openingAccountResponse={props.openingAccountResponse}
+              alertStyle={props.openingAccountResponse.success ? 'success' : 'danger'}
+            />
+          </When>
+        </Choose>
+      </Form>
+    </Well>
+  </section>
 );
 
 export default Register;

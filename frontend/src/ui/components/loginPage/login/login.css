@@ -1,4 +1,9 @@
-.container {
-  margin-top: 2.5em;
-  margin-bottom: 3em;
+.section {
+  padding-left: 20%;
+}
+
+.well {
+  height: 25em;
+  width: 25em;
+  border-radius: 2em;
 }

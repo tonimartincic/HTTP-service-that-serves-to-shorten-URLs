@@ -5,16 +5,7 @@
   padding-top: 5em;
 }
 
-.section::before {
-  top: 5%;
-  left: 35%;
-  height: 85%;
-  width: 30%;
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: lightgray;
-  box-shadow: inset 0 0 0 30em rgba(255, 255, 255, 0.5);
-  filter: blur(1em);
+.container {
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
