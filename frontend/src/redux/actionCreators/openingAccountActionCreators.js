@@ -3,7 +3,7 @@ import * as types from '../actionTypes';
 
 export default async function openAccount(accountId) {
   try {
-    const response = await axios.post('/account', {accountId});
+    const response = await axios.post('/api/account', {accountId});
 
     return {
       type: types.OPEN_ACCOUNT_SUCCESS,

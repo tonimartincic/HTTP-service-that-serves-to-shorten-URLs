@@ -4,7 +4,7 @@ import {history} from '../../ui/components/history/history';
 
 export default async function validateAccount(account) {
   try {
-    const response = await axios.post('/account/validate', `username=${account.username}&password=${account.password}`, {headers: {
+    const response = await axios.post('/api/account/validate', `username=${account.username}&password=${account.password}`, {headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },});
 
