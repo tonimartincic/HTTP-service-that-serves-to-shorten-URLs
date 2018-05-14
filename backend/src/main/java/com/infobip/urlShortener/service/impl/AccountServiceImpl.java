@@ -9,6 +9,8 @@ import com.infobip.urlShortener.repository.AccountRepository;
 import com.infobip.urlShortener.service.AccountService;
 import com.infobip.urlShortener.util.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,15 +25,15 @@ public class AccountServiceImpl implements AccountService {
 
   @Override
   public OpeningAccountResponse openAccount(OpeningAccountRequest openingAccountRequest) {
-      if(accountAlreadyExists(openingAccountRequest.getAccountId())) {
-          return new OpeningAccountResponse(Boolean.FALSE, OpeningAccountDescription.ALREADY_EXISTS.getDescription(), null);
-      }
+    if(accountAlreadyExists(openingAccountRequest.getAccountId())) {
+        return new OpeningAccountResponse(Boolean.FALSE, OpeningAccountDescription.ALREADY_EXISTS.getDescription(), null);
+    }
 
-      String password = PasswordGenerator.generatePassword();
-      Account account = new Account(openingAccountRequest.getAccountId(), password);
-      this.accountRepository.save(account);
+    String password = PasswordGenerator.generatePassword();
+    Account account = new Account(openingAccountRequest.getAccountId(), password);
+    this.accountRepository.save(account);
 
-      return new OpeningAccountResponse(Boolean.TRUE, OpeningAccountDescription.SUCCESS.getDescription(), password);
+    return new OpeningAccountResponse(Boolean.TRUE, OpeningAccountDescription.SUCCESS.getDescription(), password);
   }
 
   private boolean accountAlreadyExists(String AccountId) {
