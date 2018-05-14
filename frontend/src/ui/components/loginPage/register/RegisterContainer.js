@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import openAccount from '../../../../redux/actionCreators/openingAccountActionCreators';
+import {setOpeningAccountResponse} from '../../../../redux/actions/openingAccountActions';
 import Register from './Register';
 
 class RegisterContainer extends Component {
@@ -32,6 +33,8 @@ class RegisterContainer extends Component {
     this.setState({
       accountId: '',
     });
+
+    this.props.setOpeningAccountResponse(null);
   };
 
   render() {
@@ -56,6 +59,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     openAccount: accountId => dispatch(openAccount(accountId)),
+    setOpeningAccountResponse: () => dispatch(setOpeningAccountResponse()),
   };
 }
 

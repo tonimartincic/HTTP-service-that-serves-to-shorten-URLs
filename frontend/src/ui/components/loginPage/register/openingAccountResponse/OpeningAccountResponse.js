@@ -1,15 +1,18 @@
 import React from 'react';
 import {Alert} from 'react-bootstrap';
+import styles from './openingAccountResponse.css';
 
 const OpeningAccountResponse = props => (
-  <Alert bsStyle={props.alertStyle} onDismiss={this.handleDismiss}>
-  <h4>{props.openingAccountResponse.description}</h4>
-  {/*<p>*/}
-    {/*<Button bsStyle="danger">Take this action</Button>*/}
-    {/*<span> or </span>*/}
-    {/*<Button onClick={this.handleDismiss}>Hide Alert</Button>*/}
-    {/*</p>*/}
-  </Alert>
+  <section className={styles.section}>
+    <Alert bsStyle={props.openingAccountResponse.success ? 'success' : 'danger'} onDismiss={this.handleDismiss}>
+      <h4>{props.openingAccountResponse.description}</h4>
+      <Choose>
+        <When condition={props.openingAccountResponse.success}>
+          <h4>Password: {props.openingAccountResponse.password}</h4>
+        </When>
+      </Choose>
+    </Alert>
+  </section>
 );
 
 export default OpeningAccountResponse;

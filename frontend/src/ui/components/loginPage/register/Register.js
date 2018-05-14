@@ -23,7 +23,6 @@ const Register = props => (
           <When condition={props.openingAccountResponse != null}>
             <OpeningAccountResponse
               openingAccountResponse={props.openingAccountResponse}
-              alertStyle={props.openingAccountResponse.success ? 'success' : 'danger'}
             />
           </When>
         </Choose>
