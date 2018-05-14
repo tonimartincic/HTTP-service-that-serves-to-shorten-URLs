@@ -37,6 +37,24 @@ class NavigationBar extends Component {
                 <span className='glyphicon glyphicon-upload'/> URL register
               </span>
           </NavItem>
+          <NavItem
+            componentClass={Link}
+            to='/statistics'
+            href='/statistics'
+          >
+              <span className={styles.span}>
+                <span className='glyphicon glyphicon-th-list'/> Statistics
+              </span>
+          </NavItem>
+          <NavItem
+            componentClass={Link}
+            to='/help'
+            href='/help'
+          >
+              <span className={styles.span}>
+                <span className='glyphicon glyphicon-question-sign'/> Help
+              </span>
+          </NavItem>
           {/*<NavItem>*/}
               {/*<span className={styles.spanNoHover}>*/}
                  {/*<span*/}
