@@ -2,8 +2,8 @@ package com.infobip.urlShortener.domain.account;
 
 import lombok.Data;
 import lombok.ToString;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Data
 public class Account {
 
-  public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+  //public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Account {
       this.setPassword(password);
   }
 
-  public void setPassword(String password) {
-    this.password = PASSWORD_ENCODER.encode(password);
-  }
+//  public void setPassword(String password) {
+//    this.password = PASSWORD_ENCODER.encode(password);
+//  }
 }

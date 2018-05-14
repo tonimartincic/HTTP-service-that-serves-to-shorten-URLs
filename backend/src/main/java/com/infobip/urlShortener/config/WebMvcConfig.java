@@ -18,7 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@Import(SecurityConfiguration.class)
+//@Import(SecurityConfiguration.class)
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
   @Override
