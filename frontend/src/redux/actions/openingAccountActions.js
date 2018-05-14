@@ -1,5 +1,5 @@
 import * as types from '../actionTypes';
 
 export const setOpeningAccountResponse = () => ({
-  type: types.SET_OPENING_ACCOUNT_RESPONSE
+  type: types.RESET_OPENING_ACCOUNT_RESPONSE
 });

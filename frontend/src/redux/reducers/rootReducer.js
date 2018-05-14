@@ -7,7 +7,7 @@ import statisticsReducer from "./statisticsReducer";
 const rootReducer = combineReducers({
   account: accountReducer,
   openingAccountResponse: openingAccountReducer,
-  url: URLReducer,
+  registeringURLResponse: URLReducer,
   statistics: statisticsReducer,
 });
 

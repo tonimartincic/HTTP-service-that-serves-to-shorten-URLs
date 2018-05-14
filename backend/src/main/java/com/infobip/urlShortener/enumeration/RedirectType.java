@@ -23,6 +23,10 @@ public enum RedirectType {
     }
 
   public static RedirectType getByValue(final Integer value) {
+    if(value == null) {
+      return RedirectType.FOUND;
+    }
+
     switch (value) {
       case 301:
         return RedirectType.MOVED_PERMANENTLY;

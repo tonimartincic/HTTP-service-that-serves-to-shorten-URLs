@@ -9,10 +9,10 @@ export default function openingAccountReducer(state = initialState.openingAccoun
     case types.OPEN_ACCOUNT_FAILURE:
       return Object.assign({}, state);
 
-    case types.SET_OPENING_ACCOUNT_RESPONSE:
+    case types.RESET_OPENING_ACCOUNT_RESPONSE:
       return null;
 
     default:
-      return state;
+      return Object.assign({}, state);
   }
 }

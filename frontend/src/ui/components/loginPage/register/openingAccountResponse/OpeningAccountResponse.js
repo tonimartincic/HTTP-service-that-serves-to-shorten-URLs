@@ -4,7 +4,7 @@ import styles from './openingAccountResponse.css';
 
 const OpeningAccountResponse = props => (
   <section className={styles.section}>
-    <Alert bsStyle={props.openingAccountResponse.success ? 'success' : 'danger'} onDismiss={this.handleDismiss}>
+    <Alert bsStyle={props.openingAccountResponse.success ? 'success' : 'danger'}>
       <h4>{props.openingAccountResponse.description}</h4>
       <Choose>
         <When condition={props.openingAccountResponse.success}>

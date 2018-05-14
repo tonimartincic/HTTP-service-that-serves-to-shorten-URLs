@@ -2,10 +2,11 @@ import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import styles from './privateRoute.css';
+import * as util from '../../../utils/Util';
 
 const PrivateRouteComponent = (props) => (
   <Route {...props.routeProps} render={() => (
-    props.account != null && !isEmpty(props.account)? (
+    props.account != null && !util.isEmpty(props.account)? (
       <section className={styles.section}>{props.children}</section>
     ) : (
       <Redirect to={{
@@ -14,13 +15,6 @@ const PrivateRouteComponent = (props) => (
       }}/>)
   )}/>
 );
-
-function isEmpty( obj ) {
-  for ( var prop in obj ) {
-    return false;
-  }
-  return true;
-}
 
 const mapStateToProps = (state, ownProps) => {
   return {

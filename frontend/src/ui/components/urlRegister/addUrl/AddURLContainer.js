@@ -34,7 +34,7 @@ class AddURLContainer extends Component {
     const URLRequest =
       {
         url: this.state.url,
-        redirectType: this.state.redirectType,
+        redirectType: this.state.redirectType === 'select' ? null: this.state.redirectType,
       };
 
     this.props.registerURL(URLRequest);
@@ -71,13 +71,16 @@ class AddURLContainer extends Component {
         handleSubmit={event => this.handleSubmit(event)}
         handleReset={event => this.handleReset(event)}
         urlValidation={this.state.urlValidation}
+        registeringURLResponse={this.props.registeringURLResponse}
       />
     );
   }
 }
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    registeringURLResponse: state.registeringURLResponse,
+  };
 }
 
 function mapDispatchToProps(dispatch) {

@@ -6,12 +6,12 @@ export default async function registerURL(URLRequest) {
     const response = await axios.post('/api/register', URLRequest);
 
     return {
-      type: types.OPEN_ACCOUNT_SUCCESS,
+      type: types.REGISTER_URL_SUCCESS,
       data: response.data,
     };
   } catch (err) {
     return {
-      type: types.OPEN_ACCOUNT_FAILURE,
+      type: types.REGISTER_URL_FAILURE,
       data: err,
     };
   }

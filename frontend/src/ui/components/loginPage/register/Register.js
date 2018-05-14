@@ -6,6 +6,7 @@ import FormButtons from './form/FormButtons';
 import AccountIdValidation from './validation/AccountIdValidation';
 import OpeningAccountResponse from './openingAccountResponse/OpeningAccountResponse';
 import styles from './register.css';
+import * as util from '../../../../utils/Util';
 
 const Register = props => (
   <section className={styles.section}>
@@ -26,7 +27,7 @@ const Register = props => (
           </When>
         </Choose>
         <Choose>
-          <When condition={props.openingAccountResponse != null}>
+          <When condition={props.openingAccountResponse != null && !util.isEmpty(props.openingAccountResponse)}>
             <OpeningAccountResponse
               openingAccountResponse={props.openingAccountResponse}
             />

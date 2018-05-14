@@ -8,6 +8,6 @@ public class URLResponse {
   private String shortUrl;
 
   public URLResponse(URL url) {
-    this.shortUrl = url.getValue();
+    this.shortUrl = url.getShortUrl();
   }
 }

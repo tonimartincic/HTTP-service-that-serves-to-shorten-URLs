@@ -16,6 +16,6 @@ export default function accountReducer(state = initialState.account, action) {
       return Object.assign({}, state);
 
     default:
-      return state;
+      return Object.assign({}, state);
   }
 }
