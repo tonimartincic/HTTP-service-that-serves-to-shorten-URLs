@@ -1,8 +1,9 @@
 import React from 'react';
+import NavigationBar from '../navigationBar/NavigationBar';
 
-const URLRegister = props => (
+const URLRegister = () => (
   <section>
-    <span>blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+    <NavigationBar/>
   </section>
 );
 
