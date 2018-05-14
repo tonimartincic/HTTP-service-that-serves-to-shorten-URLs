@@ -71,7 +71,7 @@ module.exports = {
     },
     proxy: [
       {
-        context: ['/api/', '/login', '/logout'],
+        context: ['/api/', '/logout'],
         target: 'http://localhost:8080',
       }
     ]
