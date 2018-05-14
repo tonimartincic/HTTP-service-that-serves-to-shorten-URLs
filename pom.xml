@@ -8,6 +8,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+  <name>url-shortener-tm</name>
+  <description>HTTP service that serves to shorten URLs</description>
+
 	<modules>
 		<module>frontend</module>
 		<module>backend</module>
