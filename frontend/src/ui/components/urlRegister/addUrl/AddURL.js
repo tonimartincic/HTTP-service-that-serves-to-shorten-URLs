@@ -14,6 +14,7 @@ const AddURL = props => (
           redirectType={props.redirectType}
           handleChangeUrl={event => props.handleChangeUrl(event)}
           handleChangeRedirectType={event => props.handleChangeRedirectType(event)}
+          urlValidation={props.urlValidation}
         />
         <FormButtons
           handleSubmit={event => props.handleSubmit(event)}

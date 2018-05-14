@@ -70,8 +70,7 @@ class AddURLContainer extends Component {
         handleChangeRedirectType={event => this.handleChangeRedirectType(event)}
         handleSubmit={event => this.handleSubmit(event)}
         handleReset={event => this.handleReset(event)}
-        openingAccountResponse={this.props.openingAccountResponse}
-        accountIdValidation={this.state.accountIdValidation}
+        urlValidation={this.state.urlValidation}
       />
     );
   }

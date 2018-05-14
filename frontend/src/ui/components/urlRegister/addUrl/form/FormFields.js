@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row, Col, FormControl, ControlLabel} from 'react-bootstrap';
+import {Row, Col, FormControl, ControlLabel, FormGroup} from 'react-bootstrap';
 
 import styles from './formFields.css';
 
@@ -8,6 +8,9 @@ const FormFields = props => (
     <Row>
       <Col>
         <section className={styles.section}>
+          <FormGroup
+            validationState={props.urlValidation}
+          >
           <ControlLabel>URL</ControlLabel>
           <FormControl
             type='text'
@@ -15,6 +18,7 @@ const FormFields = props => (
             placeholder='URL'
             onChange={props.handleChangeUrl}
           />
+          </FormGroup>
         </section>
       </Col>
     </Row>
