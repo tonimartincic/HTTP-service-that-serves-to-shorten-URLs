@@ -1,17 +1,16 @@
 package com.infobip.urlShortener.domain.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.infobip.urlShortener.domain.url.URL;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@ToString(exclude = "password")
 @Data
 public class Account {
 
@@ -25,6 +24,10 @@ public class Account {
 
   private String password;
 
+  @JsonIgnore
+  @OneToMany(mappedBy = "account")
+  private Set<URL> urls;
+
   public Account() {
   }
 
@@ -35,5 +38,12 @@ public class Account {
 
   public void setPassword(String password) {
     this.password = PASSWORD_ENCODER.encode(password);
+  }
+
+  @Override
+  public String toString() {
+    return "Account{" +
+      "username='" + username + '\'' +
+      '}';
   }
 }

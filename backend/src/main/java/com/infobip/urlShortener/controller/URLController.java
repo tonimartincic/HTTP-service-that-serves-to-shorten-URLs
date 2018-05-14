@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 public class URLController {
 
@@ -19,7 +21,7 @@ public class URLController {
   }
 
   @PostMapping("/api/register")
-  public URLResponse register(@RequestBody final URLRequest urlRequest) {
-      return this.urlService.register(urlRequest);
+  public URLResponse register(@RequestBody final URLRequest urlRequest, Principal principal) {
+      return this.urlService.register(urlRequest, principal.getName());
   }
 }

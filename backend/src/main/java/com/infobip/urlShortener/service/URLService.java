@@ -5,5 +5,5 @@ import com.infobip.urlShortener.domain.url.URLResponse;
 
 public interface URLService {
 
-  URLResponse register(URLRequest urlRequest);
+  URLResponse register(URLRequest urlRequest, String username);
 }
