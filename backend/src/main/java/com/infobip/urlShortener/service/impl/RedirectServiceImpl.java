@@ -18,7 +18,7 @@ public class RedirectServiceImpl implements RedirectService {
   }
 
   @Override
-  public String redirect(String shortUrl) {
+  public URL redirect(String shortUrl) {
     URL url = this.urlRepository.findByShortUrl(URLGenerator.URL_FIRST_PART + shortUrl);
 
     if(url == null) {
@@ -28,6 +28,6 @@ public class RedirectServiceImpl implements RedirectService {
     url.setNumberOfRedirects(url.getNumberOfRedirects() + 1);
     this.urlRepository.save(url);
 
-    return url.getValue();
+    return url;
   }
 }

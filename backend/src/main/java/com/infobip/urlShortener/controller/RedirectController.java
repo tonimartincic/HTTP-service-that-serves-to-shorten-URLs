@@ -1,7 +1,9 @@
 package com.infobip.urlShortener.controller;
 
+import com.infobip.urlShortener.domain.url.URL;
 import com.infobip.urlShortener.service.RedirectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,9 @@ public class RedirectController {
 
   @GetMapping("/api/{shortUrl}")
   public RedirectView getLoggedUser(@PathVariable String shortUrl) {
-    return new RedirectView(this.redirectService.redirect(shortUrl));
+    URL url = this.redirectService.redirect(shortUrl);
+    RedirectView redirectView = new RedirectView(url.getValue());
+    redirectView.setStatusCode(HttpStatus.valueOf(url.getRedirectType().getValue()));
+    return redirectView;
   }
 }

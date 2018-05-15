@@ -1,6 +1,8 @@
 package com.infobip.urlShortener.service;
 
+import com.infobip.urlShortener.domain.url.URL;
+
 public interface RedirectService {
 
-  String redirect(String shortUrl);
+  URL redirect(String shortUrl);
 }
