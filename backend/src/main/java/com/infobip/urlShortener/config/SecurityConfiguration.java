@@ -17,7 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+  protected void configure(AuthenticationManagerBuilder auth) {
     auth.authenticationProvider(this.authenticationProvider);
   }
 
@@ -38,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       .and()
       .csrf().disable()
       .logout()
-      .logoutSuccessUrl("/login");
+      .logoutSuccessUrl("/logout")
+      .deleteCookies("JSESSIONID");
   }
 }

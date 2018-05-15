@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import styles from './navigationBar.css';
+import * as util from "../../../utils/Util";
 
 class NavigationBar extends Component {
   render() {
@@ -58,9 +59,35 @@ class NavigationBar extends Component {
           <NavItem>
               <span className={styles.spanNoHover}>
                  <span
-                   className='glyphicon glyphicon-user'/> {this.props.account == null ? '' : this.props.account.username}
+                   className='glyphicon glyphicon-user'/> {this.props.account == null || util.isEmpty(this.props.account) ? 'Not logged in!' : this.props.account.username}
               </span>
           </NavItem>
+          <Choose>
+            <When condition={this.props.account != null && !util.isEmpty(this.props.account)}>
+              <NavItem
+                componentClass={Link}
+                to='/login'
+                href='/login'
+              >
+                  <span className={styles.span}>
+                     <span
+                       className='glyphicon glyphicon-log-out'/> Logout
+                  </span>
+              </NavItem>
+            </When>
+            <Otherwise>
+              <NavItem
+                componentClass={Link}
+                to='/login'
+                href='/login'
+              >
+                  <span className={styles.span}>
+                     <span
+                       className='glyphicon glyphicon-log-in'/> Login
+                  </span>
+              </NavItem>
+            </Otherwise>
+          </Choose>
         </Nav>
       </Navbar>
     );

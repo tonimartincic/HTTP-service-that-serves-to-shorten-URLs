@@ -16,3 +16,19 @@ export async function getStatistics(AccountId) {
     };
   }
 }
+
+export async function getStatisticsForLoggedUser() {
+  try {
+    const response = await axios.get('/api/statistic');
+
+    return {
+      type: types.GET_STATISTICS_SUCCESS,
+      data: response.data,
+    };
+  } catch (err) {
+    return {
+      type: types.GET_STATISTICS_FAILURE,
+      data: err,
+    };
+  }
+}

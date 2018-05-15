@@ -1,6 +1,5 @@
 import React from 'react';
 import {Form, Row, Col} from 'react-bootstrap';
-import AddURLHeader from './header/AddURLHeader';
 import FormFields from './form/FormFields';
 import FormButtons from './form/FormButtons';
 import RegisteringURLResponse from './registeringUrlResponse/RegisteringURLResponse';
@@ -10,7 +9,6 @@ const AddURL = props => (
   <Row>
     <Col md={4} mdOffset={4}>
       <Form>
-        <AddURLHeader/>
         <FormFields
           url={props.url}
           redirectType={props.redirectType}
