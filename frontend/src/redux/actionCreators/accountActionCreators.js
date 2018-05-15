@@ -1,16 +1,14 @@
 import axios from 'axios';
 import * as types from '../actionTypes';
-import { history } from '../../ui/components/history/history';
 
 export default async function validateAccount(account) {
   try {
-    const response = await axios.post('/api/account/validate', `username=${account.username}&password=${account.password}`, {headers: {
+    await axios.post('/api/account/validate', `username=${account.username}&password=${account.password}`, {headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },});
 
     return {
       type: types.VALIDATE_ACCOUNT_SUCCESS,
-      data: response.data,
     };
   } catch (err) {
     return {
@@ -39,10 +37,6 @@ export async function getLoggedUser() {
 export async function login() {
   try {
     const response = await axios.get('/api/account');
-
-    if(response.data !== '') {
-      history.push('/');
-    }
 
     return {
       type: types.LOGIN_SUCCESS,

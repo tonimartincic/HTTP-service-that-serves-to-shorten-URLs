@@ -4,6 +4,8 @@ import {withRouter} from 'react-router-dom';
 import validateAccount from '../../../../redux/actionCreators/accountActionCreators';
 import {login} from '../../../../redux/actionCreators/accountActionCreators';
 import Login from './Login';
+import * as util from "../../../../utils/Util";
+import {history} from "../../history/history";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -29,7 +31,12 @@ class LoginContainer extends Component {
     };
 
     this.props.validateAccount(account)
-      .then(() => this.props.login());
+      .then(() => this.props.login())
+      .then(() => {
+        if(this.props.account != null && !util.isEmpty(this.props.account)) {
+          history.push('/');
+        }
+      });
   };
 
   handleChangeAccountId = (event) => {
@@ -65,8 +72,9 @@ class LoginContainer extends Component {
   }
 }
 
-function mapStateToProps() {
+function mapStateToProps(state) {
   return {
+    account: state.account,
   };
 }
 
