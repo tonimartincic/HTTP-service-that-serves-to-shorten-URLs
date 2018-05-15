@@ -1,35 +1,25 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
   context: path.join(__dirname, 'src'),
   entry: {
-    app: './index.js'
+    app: [
+      './index.js'
+    ]
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js'
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'commons',
-      filename: 'commons.js'
-    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Timely',
       template: path.join(__dirname, 'assets/index-template.html')
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
-    new ExtractTextPlugin({
-      filename: 'app.css',
-      allChunks: true
     })
   ],
   resolve: {
@@ -40,15 +30,35 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader', use: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'postcss-loader']
-        })
+        loaders: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          }
+        ]
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loaders: ['babel-loader?cacheDirectory'],
         include: path.join(__dirname, 'src')
+      }
+    ]
+  },
+  devServer: {
+    hot: true,
+    historyApiFallback: true,
+    proxy: [
+      {
+        context: ['/', '/logout'],
+        target: 'http://localhost:8080',
       }
     ]
   }

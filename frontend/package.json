@@ -3,7 +3,7 @@
   "version": "0.0.1-SNAPSHOT",
   "description": "URL shortener frontend",
   "scripts": {
-    "start": "webpack-dev-server --inline --config webpack.config.js",
+    "start": "webpack-dev-server --inline --port 3000 --config webpack.config.js",
     "build": "webpack -p"
   },
   "devDependencies": {
