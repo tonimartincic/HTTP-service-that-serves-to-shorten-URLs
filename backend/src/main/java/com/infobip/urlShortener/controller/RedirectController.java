@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class RedirectController {
 
@@ -20,8 +22,10 @@ public class RedirectController {
   }
 
   @GetMapping("/api/{shortUrl}")
-  public RedirectView getLoggedUser(@PathVariable String shortUrl) {
-    URL url = this.redirectService.redirect(shortUrl);
+  public RedirectView getLoggedUser(@PathVariable String shortUrl, HttpServletRequest request) {
+    String requestedURL = request.getRequestURL().toString();
+    URL url = this.redirectService.redirect(shortUrl, requestedURL);
+
     RedirectView redirectView = new RedirectView(url.getValue());
     redirectView.setStatusCode(HttpStatus.valueOf(url.getRedirectType().getValue()));
     return redirectView;

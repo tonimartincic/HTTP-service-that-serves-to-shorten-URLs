@@ -4,11 +4,12 @@ import org.apache.commons.lang.RandomStringUtils;
 
 public class URLGenerator {
 
-  public static final String URL_FIRST_PART = "http://localhost:3000/";
+  private static final String MAPPING = "register";
 
   private static final Integer LENGTH = 8;
 
-  public static String generateShortURL() {
-    return URL_FIRST_PART + RandomStringUtils.randomAlphanumeric(LENGTH);
+  public static String generateShortURL(String requestedURL) {
+    String requestedURLWithoutMapping = requestedURL.substring(requestedURL.length() - MAPPING.length());
+    return requestedURLWithoutMapping + RandomStringUtils.randomAlphanumeric(LENGTH);
   }
 }

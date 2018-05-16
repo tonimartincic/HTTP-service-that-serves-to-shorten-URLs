@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 @RestController
@@ -21,7 +22,8 @@ public class URLController {
   }
 
   @PostMapping("/api/register")
-  public URLResponse register(@RequestBody final URLRequest urlRequest, Principal principal) {
-      return this.urlService.register(urlRequest, principal.getName());
+  public URLResponse register(@RequestBody final URLRequest urlRequest, Principal principal, HttpServletRequest request) {
+    String requestedURL = request.getRequestURL().toString();
+    return this.urlService.register(urlRequest, principal.getName(), requestedURL);
   }
 }

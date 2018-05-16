@@ -35,7 +35,6 @@ public class URL {
   public URL(URLRequest urlRequest) {
     this.value = urlRequest.getUrl();
     this.redirectType = RedirectType.getByValue(urlRequest.getRedirectType());
-    this.shortUrl = URLGenerator.generateShortURL();
     this.numberOfRedirects = 0L;
   }
 
