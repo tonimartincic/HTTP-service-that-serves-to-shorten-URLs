@@ -23,9 +23,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http
+    http.headers().frameOptions().sameOrigin()
+      .and()
       .authorizeRequests()
-      .antMatchers("/favicon.ico", "/", "/login", "/api/account/validate", "/api/account").permitAll()
+      .antMatchers("/favicon.ico", "/", "/login", "/api/account/validate", "/api/account", "/*.js").permitAll()
       .anyRequest().authenticated()
       .and()
       .formLogin()
@@ -33,8 +34,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       .passwordParameter("password")
       .loginPage("/login")
       .loginProcessingUrl("/api/account/validate")
-      .and()
-      .httpBasic()
       .and()
       .csrf().disable()
       .logout()
