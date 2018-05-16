@@ -9,7 +9,7 @@ public class URLGenerator {
   private static final Integer LENGTH = 8;
 
   public static String generateShortURL(String requestedURL) {
-    String requestedURLWithoutMapping = requestedURL.substring(requestedURL.length() - MAPPING.length());
+    String requestedURLWithoutMapping = requestedURL.substring(0,requestedURL.length() - MAPPING.length());
     return requestedURLWithoutMapping + RandomStringUtils.randomAlphanumeric(LENGTH);
   }
 }
